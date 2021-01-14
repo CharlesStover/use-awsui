@@ -1,0 +1,22 @@
+language: node_js
+node_js: 14
+branches:
+  only: master
+install:
+  - rm -rf ./.yarn/cache/
+  - rm -rf ./.yarn/sdks/
+  - rm -rf ./.yarn/unplugged/
+  - rm -rf ./.yarn/build-state.yml
+  - rm -rf ./.yarn/install-state.gz
+  - yarn
+script:
+  - yarn build
+  - yarn test
+deploy:
+  api_key:
+    secure:
+  email: npmjs@charlesstover.com
+  on:
+    branch: master
+  provider: npm
+  skip_cleanup: true

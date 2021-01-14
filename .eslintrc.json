@@ -1,0 +1,47 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks"],
+
+  "env": {
+    "jest": true,
+    "node": true
+  },
+
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/react"
+  ],
+
+  "parserOptions": {
+    "extraFileExtensions": [".cjs", ".json"],
+    "project": ["./tsconfig.json", "./tsconfig.eslint.json"],
+    "tsconfigRootDir": "./",
+    "useJSXTextNode": true,
+    "warnOnUnsupportedTypeScriptVersion": false,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": false
+    }
+  },
+
+  "rules": {
+    "prettier/prettier": "error",
+    "react/jsx-uses-react": "off",
+    "react/prop-types": ["error", { "skipUndeclared": true }],
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }]
+  },
+
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
