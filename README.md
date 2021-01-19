@@ -1,37 +1,60 @@
-# Node package
+# `useAwsui`
 
-[![version](https://img.shields.io/npm/v/PACKAGE-NAME.svg)](https://www.npmjs.com/package/PACKAGE-NAME)
-[![minzipped size](https://img.shields.io/bundlephobia/minzip/PACKAGE-NAME.svg)](https://www.npmjs.com/package/PACKAGE-NAME)
-[![downloads](https://img.shields.io/npm/dt/PACKAGE-NAME.svg)](https://www.npmjs.com/package/PACKAGE-NAME)
+[![version](https://img.shields.io/npm/v/use-awsui.svg)](https://www.npmjs.com/package/use-awsui)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/use-awsui.svg)](https://www.npmjs.com/package/use-awsui)
+[![downloads](https://img.shields.io/npm/dt/use-awsui.svg)](https://www.npmjs.com/package/use-awsui)
 
-Description
+`use-awsui` is a collection of React hooks for the AWS UI components. By
+instantiating your components' local state with this library, you can save
+repetitive boilerplate surrounding state instantiation and event handlers. You
+may also rest comfortably knowing this package maintains 100% test coverage.
 
-## Getting started
-
-- `yarn set version latest`
-- `yarn`
-- `yarn up * && yarn up @*/*`
-- `yarn dlx @yarnpkg/pnpify --sdk vscode`
+- [Install](#install)
+- [Supported components](#supported-components)
+  - [Alert](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-alert.md)
+  - [AppLayout](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-app-layout.md)
+  - [Checkbox](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-checkbox.md)
+  - [CollectionPreferences](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-collection-preferences.md)
+  - [ExpandableSection](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-expandable-section.md)
+  - [Input](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-input.md)
+  - [Pagination](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-pagination.md)
+  - [RadioGroup](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-radio-group.md)
+  - [SideNavigation](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-side-navigation.md)
+  - [Table](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-table.md)
+  - [Tabs](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-tabs.md)
+  - [Toggle](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-toggle.md)
+- [Contributing](#contributing)
 
 ## Install
 
-- `npm install package-name` or
-- `yarn add package-name`
+- `npm install use-awsui` or
+- `yarn add use-awsui`
 
-## Use
+## Supported components
 
-```javascript
-import packageName from 'package-name';
+The `use-awsui` library offers React hooks for the following AWS UI components.
+These hooks return several of the components' value props and event handlers in
+order to both instantiate and manage the components' local, controlled state.
 
-packageName();
-```
+- [Alert](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-alert.md)
+- [AppLayout](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-app-layout.md)
+- [Checkbox](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-checkbox.md)
+- [CollectionPreferences](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-collection-preferences.md)
+- [ExpandableSection](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-expandable-section.md)
+- [Input](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-input.md)
+- [Pagination](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-pagination.md)
+- [RadioGroup](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-radio-group.md)
+- [SideNavigation](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-side-navigation.md)
+- [Table](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-table.md)
+- [Tabs](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-tabs.md)
+- [Toggle](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-toggle.md)
 
-## API
+## Contributing
 
-API
+To install this repository to begin local development, use the following
+commands in order:
 
-## Sponsor 💗
-
-If you are a fan of this project, you may
-[become a sponsor](https://github.com/sponsors/CharlesStover) via GitHub's
-Sponsors Program.
+- `yarn set version latest` to keep Yarn up-to-date.
+- `yarn` to install the existing dependencies.
+- `yarn up * && yarn up @*/*` to upgrade to the latest dependencies.
+- `yarn dlx @yarnpkg/pnpify --sdk vscode` to integrate with VS Code.
