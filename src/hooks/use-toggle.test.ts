@@ -1,6 +1,6 @@
 import { ToggleProps } from '@awsui/components-react/toggle';
 import { act, renderHook } from '@testing-library/react-hooks';
-import useToggle from './use-toggle';
+import { useToggle } from '..';
 
 describe('useToggle', (): void => {
   describe('checked', (): void => {

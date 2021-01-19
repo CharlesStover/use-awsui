@@ -1,6 +1,6 @@
 import { SideNavigationProps } from '@awsui/components-react/side-navigation';
 import { act, renderHook } from '@testing-library/react-hooks';
-import useSideNavigation from './use-side-navigation';
+import { useSideNavigation } from '..';
 
 const TEST_ACTIVE_HREF = '/test/active-href';
 

@@ -53,3 +53,8 @@ export {
   Props as UseTabsProps,
   default as useTabs,
 } from './hooks/use-tabs';
+export {
+  State as ToggleState,
+  Props as UseToggleProps,
+  default as useToggle,
+} from './hooks/use-toggle';
