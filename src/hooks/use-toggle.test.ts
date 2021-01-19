@@ -2,8 +2,6 @@ import { ToggleProps } from '@awsui/components-react/toggle';
 import { act, renderHook } from '@testing-library/react-hooks';
 import useToggle from './use-toggle';
 
-const TEST_ACTIVE_HREF = '/test/active-href';
-
 describe('useToggle', (): void => {
   describe('checked', (): void => {
     it('should default to false', (): void => {
