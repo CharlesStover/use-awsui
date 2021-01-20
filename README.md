@@ -11,18 +11,7 @@ may also rest comfortably knowing this package maintains 100% test coverage.
 
 - [Install](#install)
 - [Supported components](#supported-components)
-  - [Alert](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-alert.md)
-  - [AppLayout](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-app-layout.md)
-  - [Checkbox](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-checkbox.md)
-  - [CollectionPreferences](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-collection-preferences.md)
-  - [ExpandableSection](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-expandable-section.md)
-  - [Input](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-input.md)
-  - [Pagination](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-pagination.md)
-  - [RadioGroup](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-radio-group.md)
-  - [SideNavigation](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-side-navigation.md)
-  - [Table](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-table.md)
-  - [Tabs](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-tabs.md)
-  - [Toggle](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-toggle.md)
+- [React Router](#react-router)
 - [Contributing](#contributing)
 
 ## Install
@@ -48,6 +37,13 @@ order to both instantiate and manage the components' local, controlled state.
 - [Table](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-table.md)
 - [Tabs](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-tabs.md)
 - [Toggle](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-toggle.md)
+
+## React Router
+
+AWS UI components do not support React Router out-of-the-box. If you are looking
+for hooks that integrate with React Router, it is recommended that you use this
+library in tandem with
+[`use-awsui-router`](https://www.npmjs.com/package/use-awsui-router).
 
 ## Contributing
 
