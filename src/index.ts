@@ -54,6 +54,11 @@ export {
   default as useTabs,
 } from './hooks/use-tabs';
 export {
+  State as TextFilterState,
+  Props as UseTextFilterProps,
+  default as useTextFilter,
+} from './hooks/use-text-filter';
+export {
   State as ToggleState,
   Props as UseToggleProps,
   default as useToggle,

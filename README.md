@@ -36,6 +36,7 @@ order to both instantiate and manage the components' local, controlled state.
 - [SideNavigation](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-side-navigation.md)
 - [Table](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-table.md)
 - [Tabs](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-tabs.md)
+- [TextFilter](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-text-filter.md)
 - [Toggle](https://github.com/CharlesStover/use-awsui/blob/master/docs/use-toggle.md)
 
 ## React Router
