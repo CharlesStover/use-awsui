@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 
 export interface Props {
   defaultChecked?: ToggleProps['checked'];
+  onChange?(checked: boolean): void;
 }
 
 export interface State {
@@ -14,15 +15,18 @@ export interface State {
 const DEFAULT_PROPS: Props = Object.freeze(Object.create(null));
 
 export default function useToggle(props: Props = DEFAULT_PROPS): State {
-  const { defaultChecked = false } = props;
+  const { defaultChecked = false, onChange } = props;
 
   const [checked, setChecked] = useState<boolean>(defaultChecked);
 
   const handleChange = useCallback(
     (e: NonCancelableCustomEvent<ToggleProps.ChangeDetail>): void => {
       setChecked(e.detail.checked);
+      if (onChange) {
+        onChange(e.detail.checked);
+      }
     },
-    [],
+    [onChange],
   );
 
   return {

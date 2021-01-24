@@ -1,6 +1,6 @@
 {
   "name": "use-awsui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Charles Stover <use-awsui@charlesstover.com>",
   "description": "A collection of React hooks for the AWS UI components",
   "homepage": "https://www.npmjs.com/package/use-awsui",

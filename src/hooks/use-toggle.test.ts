@@ -23,6 +23,7 @@ describe('useToggle', (): void => {
 
   describe('handleChange', (): void => {
     it('should set checked', (): void => {
+      const TEST_CHECKED = true;
       const { result } = renderHook(useToggle, {
         initialProps: undefined,
       });
@@ -32,14 +33,39 @@ describe('useToggle', (): void => {
           '',
           {
             detail: {
-              checked: true,
+              checked: TEST_CHECKED,
             },
           },
         );
         result.current.handleChange(TEST_CHANGE_EVENT);
       });
 
-      expect(result.current.checked).toBe(true);
+      expect(result.current.checked).toBe(TEST_CHECKED);
+    });
+
+    it('should fire the onChange event listener', (): void => {
+      const TEST_CHANGE_HANDLER = jest.fn();
+      const TEST_CHECKED = true;
+      const { result } = renderHook(useToggle, {
+        initialProps: {
+          onChange: TEST_CHANGE_HANDLER,
+        },
+      });
+
+      act((): void => {
+        const TEST_CHANGE_EVENT: CustomEvent<ToggleProps.ChangeDetail> = new CustomEvent(
+          '',
+          {
+            detail: {
+              checked: TEST_CHECKED,
+            },
+          },
+        );
+        result.current.handleChange(TEST_CHANGE_EVENT);
+      });
+
+      expect(TEST_CHANGE_HANDLER).toHaveBeenCalledTimes(1);
+      expect(TEST_CHANGE_HANDLER).toHaveBeenLastCalledWith(TEST_CHECKED);
     });
   });
 });

@@ -6,6 +6,7 @@
 
 - [Props](#props)
   - [`defaultChecked`](#defaultchecked)
+  - [`onChange`](#onchange)
 - [State](#state)
   - [`checked`](#checked)
   - [`handleChange`](#handlechange)
@@ -18,6 +19,13 @@
 Type: `boolean` _optional_
 
 The default value of `Toggle`'s `checked` prop
+
+### `onChange`
+
+Type: `(checked: boolean) => void`
+
+`onChange` is an event listener that fires whenever the customer changes the
+checked state. It is passed the current checked state.
 
 ## State
 
