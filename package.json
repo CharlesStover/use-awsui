@@ -1,12 +1,12 @@
 {
   "name": "use-awsui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Charles Stover <use-awsui@charlesstover.com>",
   "description": "A collection of React hooks for the AWS UI components",
   "homepage": "https://www.npmjs.com/package/use-awsui",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.mjs",
+  "module": "./dist/esm/index.js",
   "repository": "github:CharlesStover/use-awsui",
   "type": "module",
   "types": "./types/index.d.ts",
@@ -28,7 +28,7 @@
   "publishConfig": {
     "access": "public",
     "main": "./dist/cjs/index.js",
-    "module": "./dist/esm/index.mjs"
+    "module": "./dist/esm/index.js"
   },
   "scripts": {
     "build": "rollup --config",
