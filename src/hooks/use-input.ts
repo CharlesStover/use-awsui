@@ -17,16 +17,15 @@ export default function useInput(props: Props = Object.create(null)): State {
 
   const [value, setValue] = useState<InputProps['value']>(defaultValue);
 
-  const handleChange = useCallback(
-    (e: NonCancelableCustomEvent<InputProps.ChangeDetail>): void => {
-      setValue(e.detail.value);
-    },
-    [],
-  );
-
   return {
-    handleChange,
     setValue,
     value,
+
+    handleChange: useCallback(
+      (e: NonCancelableCustomEvent<InputProps.ChangeDetail>): void => {
+        setValue(e.detail.value);
+      },
+      [],
+    ),
   };
 }

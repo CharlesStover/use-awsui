@@ -19,16 +19,15 @@ export default function useCheckbox(props: Props = Object.create(null)): State {
     defaultChecked,
   );
 
-  const handleChange = useCallback(
-    (e: NonCancelableCustomEvent<CheckboxProps.ChangeDetail>): void => {
-      setChecked(e.detail.checked);
-    },
-    [],
-  );
-
   return {
     checked,
-    handleChange,
     setChecked,
+
+    handleChange: useCallback(
+      (e: NonCancelableCustomEvent<CheckboxProps.ChangeDetail>): void => {
+        setChecked(e.detail.checked);
+      },
+      [],
+    ),
   };
 }

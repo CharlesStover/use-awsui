@@ -19,18 +19,17 @@ export default function useToggle(props: Props = DEFAULT_PROPS): State {
 
   const [checked, setChecked] = useState<boolean>(defaultChecked);
 
-  const handleChange = useCallback(
-    (e: NonCancelableCustomEvent<ToggleProps.ChangeDetail>): void => {
-      setChecked(e.detail.checked);
-      if (onChange) {
-        onChange(e.detail.checked);
-      }
-    },
-    [onChange],
-  );
-
   return {
     checked,
-    handleChange,
+
+    handleChange: useCallback(
+      (e: NonCancelableCustomEvent<ToggleProps.ChangeDetail>): void => {
+        setChecked(e.detail.checked);
+        if (onChange) {
+          onChange(e.detail.checked);
+        }
+      },
+      [onChange],
+    ),
   };
 }

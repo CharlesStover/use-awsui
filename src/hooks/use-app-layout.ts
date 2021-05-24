@@ -28,26 +28,24 @@ export default function useAppLayout(
     defaultToolsOpen,
   );
 
-  const handleNavigationChange = useCallback(
-    (e: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>): void => {
-      setNavigationOpen(e.detail.open);
-    },
-    [],
-  );
-
-  const handleToolsChange = useCallback(
-    (e: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>): void => {
-      setToolsOpen(e.detail.open);
-    },
-    [],
-  );
-
   return {
-    handleNavigationChange,
-    handleToolsChange,
     navigationOpen,
     setNavigationOpen,
     setToolsOpen,
     toolsOpen,
+
+    handleNavigationChange: useCallback(
+      (e: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>): void => {
+        setNavigationOpen(e.detail.open);
+      },
+      [],
+    ),
+
+    handleToolsChange: useCallback(
+      (e: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>): void => {
+        setToolsOpen(e.detail.open);
+      },
+      [],
+    ),
   };
 }

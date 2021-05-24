@@ -28,29 +28,27 @@ export default function usePagination(props?: Props): State {
     defaultCurrentPageIndex,
   );
 
-  const handleChange = useCallback(
-    (e: NonCancelableCustomEvent<PaginationProps.ChangeDetail>): void => {
-      setCurrentPageIndex(e.detail.currentPageIndex);
-      if (onCurrentPageIndexChange) {
-        onCurrentPageIndexChange(e.detail.currentPageIndex);
-      }
-    },
-    [onCurrentPageIndexChange],
-  );
-
-  const paginate = useCallback(
-    <Item>(items: Item[]): Item[] => {
-      const start: number = (currentPageIndex - 1) * pageSize;
-      const end: number = start + pageSize;
-      return items.slice(start, end);
-    },
-    [currentPageIndex, pageSize],
-  );
-
   return {
     currentPageIndex,
-    handleChange,
-    paginate,
     setCurrentPageIndex,
+
+    handleChange: useCallback(
+      (e: NonCancelableCustomEvent<PaginationProps.ChangeDetail>): void => {
+        setCurrentPageIndex(e.detail.currentPageIndex);
+        if (onCurrentPageIndexChange) {
+          onCurrentPageIndexChange(e.detail.currentPageIndex);
+        }
+      },
+      [onCurrentPageIndexChange],
+    ),
+
+    paginate: useCallback(
+      <Item>(items: Item[]): Item[] => {
+        const start: number = (currentPageIndex - 1) * pageSize;
+        const end: number = start + pageSize;
+        return items.slice(start, end);
+      },
+      [currentPageIndex, pageSize],
+    ),
   };
 }

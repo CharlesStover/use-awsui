@@ -41,73 +41,70 @@ export default function useTable<Item>(props?: Props<Item>): State<Item> {
     boolean | undefined
   >(defaultSortingDescending);
 
-  const handleSelectionChange = useCallback(
-    (
-      e: NonCancelableCustomEvent<TableProps.SelectionChangeDetail<Item>>,
-    ): void => {
-      if (typeof onSelectionChange === 'function') {
-        onSelectionChange(e.detail.selectedItems);
-      }
-      setSelectedItems(e.detail.selectedItems);
-    },
-    [onSelectionChange],
-  );
-
-  const handleSortingChange = useCallback(
-    (e: NonCancelableCustomEvent<TableProps.SortingState<Item>>): void => {
-      if (typeof onSortingChange === 'function') {
-        onSortingChange(e.detail);
-      }
-      setSortingColumn(e.detail.sortingColumn);
-      setSortingDescending(e.detail.isDescending);
-    },
-    [onSortingChange],
-  );
-
-  const sort = useCallback(
-    (a: Item, b: Item): number => {
-      if (typeof sortingColumn === 'undefined') {
-        return 0;
-      }
-      if (typeof sortingColumn.sortingComparator !== 'undefined') {
-        const rank: number = sortingColumn.sortingComparator(a, b);
-        if (sortingDescending === true) {
-          return -1 * rank;
-        }
-        return rank;
-      }
-      if (typeof sortingColumn.sortingField === 'undefined') {
-        return 0;
-      }
-      const field: keyof Item = sortingColumn.sortingField as keyof Item;
-      const aValue: unknown = a[field];
-      const bValue: unknown = b[field];
-      if (!isSortable(aValue) || !isSortable(bValue)) {
-        return 0;
-      }
-      if (aValue < bValue) {
-        if (sortingDescending === true) {
-          return 1;
-        }
-        return -1;
-      }
-      if (aValue > bValue) {
-        if (sortingDescending === true) {
-          return -1;
-        }
-        return 1;
-      }
-      return 0;
-    },
-    [sortingColumn, sortingDescending],
-  );
-
   return {
-    handleSelectionChange,
-    handleSortingChange,
     selectedItems,
-    sort,
     sortingColumn,
     sortingDescending,
+
+    handleSelectionChange: useCallback(
+      (
+        e: NonCancelableCustomEvent<TableProps.SelectionChangeDetail<Item>>,
+      ): void => {
+        if (typeof onSelectionChange === 'function') {
+          onSelectionChange(e.detail.selectedItems);
+        }
+        setSelectedItems(e.detail.selectedItems);
+      },
+      [onSelectionChange],
+    ),
+
+    handleSortingChange: useCallback(
+      (e: NonCancelableCustomEvent<TableProps.SortingState<Item>>): void => {
+        if (typeof onSortingChange === 'function') {
+          onSortingChange(e.detail);
+        }
+        setSortingColumn(e.detail.sortingColumn);
+        setSortingDescending(e.detail.isDescending);
+      },
+      [onSortingChange],
+    ),
+
+    sort: useCallback(
+      (a: Item, b: Item): number => {
+        if (typeof sortingColumn === 'undefined') {
+          return 0;
+        }
+        if (typeof sortingColumn.sortingComparator !== 'undefined') {
+          const rank: number = sortingColumn.sortingComparator(a, b);
+          if (sortingDescending === true) {
+            return -1 * rank;
+          }
+          return rank;
+        }
+        if (typeof sortingColumn.sortingField === 'undefined') {
+          return 0;
+        }
+        const field: keyof Item = sortingColumn.sortingField as keyof Item;
+        const aValue: unknown = a[field];
+        const bValue: unknown = b[field];
+        if (!isSortable(aValue) || !isSortable(bValue)) {
+          return 0;
+        }
+        if (aValue < bValue) {
+          if (sortingDescending === true) {
+            return 1;
+          }
+          return -1;
+        }
+        if (aValue > bValue) {
+          if (sortingDescending === true) {
+            return -1;
+          }
+          return 1;
+        }
+        return 0;
+      },
+      [sortingColumn, sortingDescending],
+    ),
   };
 }

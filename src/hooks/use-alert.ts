@@ -11,18 +11,17 @@ export interface State {
   visible: AlertProps['visible'];
 }
 
-export default function useCheckbox(props: Props = Object.create(null)): State {
+export default function useAlert(props: Props = Object.create(null)): State {
   const { defaultVisible } = props;
 
   const [visible, setVisible] = useState<AlertProps['visible']>(defaultVisible);
 
-  const handleDismiss = useCallback((): void => {
-    setVisible(false);
-  }, []);
-
   return {
-    handleDismiss,
     setVisible,
     visible,
+
+    handleDismiss: useCallback((): void => {
+      setVisible(false);
+    }, []),
   };
 }

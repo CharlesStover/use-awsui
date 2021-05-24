@@ -21,16 +21,15 @@ export default function useTextFilter(
     TextFilterProps['filteringText']
   >(defaultFilteringText);
 
-  const handleChange = useCallback(
-    (e: NonCancelableCustomEvent<TextFilterProps.ChangeDetail>): void => {
-      setFilteringText(e.detail.filteringText);
-    },
-    [],
-  );
-
   return {
     filteringText,
-    handleChange,
     setFilteringText,
+
+    handleChange: useCallback(
+      (e: NonCancelableCustomEvent<TextFilterProps.ChangeDetail>): void => {
+        setFilteringText(e.detail.filteringText);
+      },
+      [],
+    ),
   };
 }

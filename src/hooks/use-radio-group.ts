@@ -19,16 +19,15 @@ export default function useRadioGroup(
 
   const [value, setValue] = useState<RadioGroupProps['value']>(defaultValue);
 
-  const handleChange = useCallback(
-    (e: NonCancelableCustomEvent<RadioGroupProps.ChangeDetail>): void => {
-      setValue(e.detail.value);
-    },
-    [],
-  );
-
   return {
-    handleChange,
     setValue,
     value,
+
+    handleChange: useCallback(
+      (e: NonCancelableCustomEvent<RadioGroupProps.ChangeDetail>): void => {
+        setValue(e.detail.value);
+      },
+      [],
+    ),
   };
 }

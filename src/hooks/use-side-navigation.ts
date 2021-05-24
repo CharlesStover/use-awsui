@@ -17,15 +17,14 @@ export default function useSideNavigation(props: Props = DEFAULT_PROPS): State {
 
   const [activeHref, setActiveHref] = useState(defaultActiveHref);
 
-  const handleFollow = useCallback(
-    (e: CustomEvent<SideNavigationProps.FollowDetail>): void => {
-      setActiveHref(e.detail.href);
-    },
-    [],
-  );
-
   return {
     activeHref,
-    handleFollow,
+
+    handleFollow: useCallback(
+      (e: CustomEvent<SideNavigationProps.FollowDetail>): void => {
+        setActiveHref(e.detail.href);
+      },
+      [],
+    ),
   };
 }

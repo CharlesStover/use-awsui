@@ -19,16 +19,15 @@ export default function useTabs(props: Props = Object.create(null)): State {
     defaultActiveTabId,
   );
 
-  const handleChange = useCallback(
-    (e: NonCancelableCustomEvent<TabsProps.ChangeDetail>): void => {
-      setActiveTabId(e.detail.activeTabId);
-    },
-    [],
-  );
-
   return {
     activeTabId,
-    handleChange,
     setActiveTabId,
+
+    handleChange: useCallback(
+      (e: NonCancelableCustomEvent<TabsProps.ChangeDetail>): void => {
+        setActiveTabId(e.detail.activeTabId);
+      },
+      [],
+    ),
   };
 }

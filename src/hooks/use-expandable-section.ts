@@ -21,18 +21,17 @@ export default function useExpandableSection(
     defaultExpanded,
   );
 
-  const handleChange = useCallback(
-    (
-      e: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail>,
-    ): void => {
-      setExpanded(e.detail.expanded);
-    },
-    [],
-  );
-
   return {
     expanded,
-    handleChange,
     setExpanded,
+
+    handleChange: useCallback(
+      (
+        e: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail>,
+      ): void => {
+        setExpanded(e.detail.expanded);
+      },
+      [],
+    ),
   };
 }
