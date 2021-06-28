@@ -1,18 +1,16 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { TextFilterProps } from '@awsui/components-react/text-filter';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { TextFilterProps } from '@awsui/components-react/text-filter';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useTextFilter } from '..';
 
 const TEST_FILTERING_TEXT = 'test filtering text';
 
-const TEST_EVENT: NonCancelableCustomEvent<TextFilterProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const TEST_EVENT: NonCancelableCustomEvent<TextFilterProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       filteringText: TEST_FILTERING_TEXT,
     },
-  },
-);
+  });
 
 describe('useTextFilter', (): void => {
   describe('filteringText', (): void => {

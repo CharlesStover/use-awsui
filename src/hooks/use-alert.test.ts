@@ -1,12 +1,11 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useAlert } from '..';
 
 const TEST_VISIBLE = true;
 
-const TEST_EVENT: NonCancelableCustomEvent<
-  Record<string, never>
-> = new CustomEvent('');
+const TEST_EVENT: NonCancelableCustomEvent<Record<string, never>> =
+  new CustomEvent('');
 
 describe('useAlert', (): void => {
   describe('handleDismiss', (): void => {

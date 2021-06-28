@@ -1,23 +1,29 @@
-import { ExpandableSectionProps } from '@awsui/components-react/expandable-section';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { ExpandableSectionProps } from '@awsui/components-react/expandable-section';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultExpanded: ExpandableSectionProps['expanded'];
+  defaultExpanded?: boolean;
 }
 
 export interface State {
-  expanded: ExpandableSectionProps['expanded'];
-  handleChange: Required<ExpandableSectionProps>['onChange'];
-  setExpanded: Dispatch<SetStateAction<ExpandableSectionProps['expanded']>>;
+  expanded?: boolean;
+  setExpanded: (value: SetStateAction<boolean | undefined>) => void;
+  handleChange: (
+    event: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail>,
+  ) => void;
 }
 
+const DEFAULT_PROPS: Props = Object.freeze({});
+
 export default function useExpandableSection(
-  props: Props = Object.create(null),
+  props: Props = DEFAULT_PROPS,
 ): State {
   const { defaultExpanded } = props;
 
-  const [expanded, setExpanded] = useState<ExpandableSectionProps['expanded']>(
+  // States
+  const [expanded, setExpanded] = useState<boolean | undefined>(
     defaultExpanded,
   );
 

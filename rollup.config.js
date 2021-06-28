@@ -4,6 +4,8 @@ import path from 'path';
 import typescript2 from 'rollup-plugin-typescript2';
 import packageJson from './package.json';
 
+const COMMONJS_EXTENSION = 'cjs';
+const ESM_EXTENSION = 'js';
 const IS_DEV = process.env.NODE_ENV === 'development';
 const MAIN_DIR = path.parse(packageJson.main).dir;
 const MODULE_DIR = path.parse(packageJson.module).dir;
@@ -17,6 +19,8 @@ const EXTERNAL = new Set([
 export default [
   {
     cache: true,
+    input: 'src/index.ts',
+    treeshake: !IS_DEV,
     external(id) {
       if (EXTERNAL.has(id)) {
         return true;
@@ -30,16 +34,19 @@ export default [
 
       return false;
     },
-    input: 'src/index.ts',
     output: [
       {
+        chunkFileNames: `[name]-[hash].${COMMONJS_EXTENSION}`,
         dir: MAIN_DIR,
-        exports: 'auto',
+        entryFileNames: `[name].${COMMONJS_EXTENSION}`,
+        exports: 'named',
         format: 'cjs',
         sourcemap: IS_DEV,
       },
       {
+        chunkFileNames: `[name]-[hash].${ESM_EXTENSION}`,
         dir: MODULE_DIR,
+        entryFileNames: `[name].${ESM_EXTENSION}`,
         format: 'es',
         sourcemap: IS_DEV,
       },
@@ -58,7 +65,6 @@ export default [
         useTsconfigDeclarationDir: true,
       }),
     ],
-    treeshake: !IS_DEV,
     watch: {
       exclude: 'node_modules/**',
     },

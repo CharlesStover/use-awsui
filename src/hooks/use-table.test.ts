@@ -1,7 +1,9 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { TableProps } from '@awsui/components-react/table';
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { TableProps } from '@awsui/components-react/table';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { TableState, UseTableProps, useTable } from '..';
+import type { TableState, UseTableProps } from '..';
+import { useTable } from '..';
 
 interface Item {
   num: number;

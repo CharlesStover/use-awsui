@@ -1,30 +1,36 @@
-import { AppLayoutProps } from '@awsui/components-react/app-layout';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { AppLayoutProps } from '@awsui/components-react/app-layout';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultNavigationOpen?: AppLayoutProps['navigationOpen'];
-  defaultToolsOpen?: AppLayoutProps['toolsOpen'];
+  defaultNavigationOpen?: boolean;
+  defaultToolsOpen?: boolean;
 }
 
 export interface State {
-  handleNavigationChange: Required<AppLayoutProps>['onNavigationChange'];
-  handleToolsChange: Required<AppLayoutProps>['onToolsChange'];
-  navigationOpen: AppLayoutProps['navigationOpen'];
-  setNavigationOpen: Dispatch<SetStateAction<AppLayoutProps['navigationOpen']>>;
-  setToolsOpen: Dispatch<SetStateAction<AppLayoutProps['toolsOpen']>>;
-  toolsOpen: AppLayoutProps['toolsOpen'];
+  navigationOpen?: boolean;
+  setNavigationOpen: (value: SetStateAction<boolean | undefined>) => void;
+  setToolsOpen: (value: SetStateAction<boolean | undefined>) => void;
+  toolsOpen?: boolean;
+  handleNavigationChange: (
+    event: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>,
+  ) => void;
+  handleToolsChange: (
+    event: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail>,
+  ) => void;
 }
 
-export default function useAppLayout(
-  props: Props = Object.create(null),
-): State {
+const DEFAULT_PROPS: Props = Object.freeze({});
+
+export default function useAppLayout(props: Props = DEFAULT_PROPS): State {
   const { defaultNavigationOpen, defaultToolsOpen } = props;
 
-  const [navigationOpen, setNavigationOpen] = useState<
-    AppLayoutProps['navigationOpen']
-  >(defaultNavigationOpen);
-  const [toolsOpen, setToolsOpen] = useState<AppLayoutProps['toolsOpen']>(
+  // States
+  const [navigationOpen, setNavigationOpen] = useState<boolean | undefined>(
+    defaultNavigationOpen,
+  );
+  const [toolsOpen, setToolsOpen] = useState<boolean | undefined>(
     defaultToolsOpen,
   );
 

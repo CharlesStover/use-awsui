@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import isSortable from './is-sortable';
 
 describe('isSortable', (): void => {
@@ -15,11 +16,6 @@ describe('isSortable', (): void => {
     expect(isSortable(null)).toBe(false);
     expect(isSortable(undefined)).toBe(false);
     expect(isSortable({})).toBe(false);
-    expect(
-      isSortable(function (): void {
-        return;
-      }),
-    ).toBe(false);
     expect(
       isSortable((): void => {
         return;

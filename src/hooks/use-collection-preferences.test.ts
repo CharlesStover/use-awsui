@@ -1,5 +1,6 @@
-import { CollectionPreferencesProps } from '@awsui/components-react/collection-preferences';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+import type { CollectionPreferencesProps } from '@awsui/components-react/collection-preferences';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useCollectionPreferences } from '..';
 
@@ -39,17 +40,15 @@ describe('useCollectionPreferences', (): void => {
   });
 
   describe('handleConfirm', (): void => {
-    const TEST_CONFIRM_EVENT: NonCancelableCustomEvent<CollectionPreferencesProps.Preferences> = new CustomEvent(
-      '',
-      {
+    const TEST_CONFIRM_EVENT: NonCancelableCustomEvent<CollectionPreferencesProps.Preferences> =
+      new CustomEvent('', {
         detail: {
           custom: TEST_CUSTOM,
           pageSize: TEST_PAGE_SIZE,
           visibleContent: TEST_VISIBLE_CONTENT,
           wrapLines: TEST_WRAP_LINES,
         },
-      },
-    );
+      });
 
     it('should set custom', (): void => {
       const { result } = renderHook(useCollectionPreferences, {

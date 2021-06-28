@@ -1,4 +1,5 @@
-import { ToggleProps } from '@awsui/components-react/toggle';
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+import type { ToggleProps } from '@awsui/components-react/toggle';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useToggle } from '..';
 
@@ -29,14 +30,12 @@ describe('useToggle', (): void => {
       });
 
       act((): void => {
-        const TEST_CHANGE_EVENT: CustomEvent<ToggleProps.ChangeDetail> = new CustomEvent(
-          '',
-          {
+        const TEST_CHANGE_EVENT: CustomEvent<ToggleProps.ChangeDetail> =
+          new CustomEvent('', {
             detail: {
               checked: TEST_CHECKED,
             },
-          },
-        );
+          });
         result.current.handleChange(TEST_CHANGE_EVENT);
       });
 
@@ -53,14 +52,12 @@ describe('useToggle', (): void => {
       });
 
       act((): void => {
-        const TEST_CHANGE_EVENT: CustomEvent<ToggleProps.ChangeDetail> = new CustomEvent(
-          '',
-          {
+        const TEST_CHANGE_EVENT: CustomEvent<ToggleProps.ChangeDetail> =
+          new CustomEvent('', {
             detail: {
               checked: TEST_CHECKED,
             },
-          },
-        );
+          });
         result.current.handleChange(TEST_CHANGE_EVENT);
       });
 

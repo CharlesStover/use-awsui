@@ -1,25 +1,28 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { TextFilterProps } from '@awsui/components-react/text-filter';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { TextFilterProps } from '@awsui/components-react/text-filter';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultFilteringText?: TextFilterProps['filteringText'];
+  defaultFilteringText?: string;
 }
 
 export interface State {
-  filteringText: TextFilterProps['filteringText'];
-  handleChange: Required<TextFilterProps>['onChange'];
-  setFilteringText: Dispatch<SetStateAction<TextFilterProps['filteringText']>>;
+  filteringText: string;
+  setFilteringText: (value: SetStateAction<string>) => void;
+  handleChange: (
+    event: NonCancelableCustomEvent<TextFilterProps.ChangeDetail>,
+  ) => void;
 }
 
-export default function useTextFilter(
-  props: Props = Object.create(null),
-): State {
+const DEFAULT_PROPS: Props = Object.freeze({});
+
+export default function useTextFilter(props: Props = DEFAULT_PROPS): State {
   const { defaultFilteringText = '' } = props;
 
-  const [filteringText, setFilteringText] = useState<
-    TextFilterProps['filteringText']
-  >(defaultFilteringText);
+  // States
+  const [filteringText, setFilteringText] =
+    useState<TextFilterProps['filteringText']>(defaultFilteringText);
 
   return {
     filteringText,

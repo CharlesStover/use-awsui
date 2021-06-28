@@ -1,18 +1,16 @@
-import { InputProps } from '@awsui/components-react/input';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { InputProps } from '@awsui/components-react/input';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useInput } from '..';
 
 const TEST_VALUE = 'test value';
 
-const TEST_EVENT: NonCancelableCustomEvent<InputProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const TEST_EVENT: NonCancelableCustomEvent<InputProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       value: TEST_VALUE,
     },
-  },
-);
+  });
 
 describe('useInput', (): void => {
   describe('handleChange', (): void => {
@@ -40,9 +38,9 @@ describe('useInput', (): void => {
   });
 
   describe('value', (): void => {
-    it('should default to undefined', (): void => {
+    it('should default to an empty string', (): void => {
       const { result } = renderHook(useInput);
-      expect(result.current.value).toBeUndefined();
+      expect(result.current.value).toBe('');
     });
 
     it('should default to defaultValue', (): void => {

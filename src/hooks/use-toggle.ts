@@ -1,22 +1,25 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { ToggleProps } from '@awsui/components-react/toggle';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { ToggleProps } from '@awsui/components-react/toggle';
 import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultChecked?: ToggleProps['checked'];
-  onChange?(checked: boolean): void;
+  defaultChecked?: boolean;
+  onChange?: (checked: boolean) => void;
 }
 
 export interface State {
   checked: boolean;
-  handleChange: Required<ToggleProps>['onChange'];
+  handleChange: (
+    event: NonCancelableCustomEvent<ToggleProps.ChangeDetail>,
+  ) => void;
 }
 
-const DEFAULT_PROPS: Props = Object.freeze(Object.create(null));
+const DEFAULT_PROPS: Props = Object.freeze({});
 
 export default function useToggle(props: Props = DEFAULT_PROPS): State {
   const { defaultChecked = false, onChange } = props;
 
+  // States
   const [checked, setChecked] = useState<boolean>(defaultChecked);
 
   return {

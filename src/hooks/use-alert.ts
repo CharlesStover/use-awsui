@@ -1,20 +1,28 @@
-import { AlertProps } from '@awsui/components-react/alert';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultVisible: AlertProps['visible'];
+  defaultVisible?: boolean;
 }
 
 export interface State {
-  handleDismiss: Required<AlertProps>['onDismiss'];
-  setVisible: Dispatch<SetStateAction<AlertProps['visible']>>;
-  visible: AlertProps['visible'];
+  setVisible: (value: SetStateAction<boolean | undefined>) => void;
+  visible?: boolean;
+  handleDismiss: (
+    event: Readonly<NonCancelableCustomEvent<Readonly<Record<string, never>>>>,
+  ) => void;
 }
 
-export default function useAlert(props: Props = Object.create(null)): State {
+const DEFAULT_PROPS: Readonly<Props> = Object.freeze({});
+
+export default function useAlert(
+  props: Readonly<Props> = DEFAULT_PROPS,
+): State {
   const { defaultVisible } = props;
 
-  const [visible, setVisible] = useState<AlertProps['visible']>(defaultVisible);
+  // States
+  const [visible, setVisible] = useState<boolean | undefined>(defaultVisible);
 
   return {
     setVisible,

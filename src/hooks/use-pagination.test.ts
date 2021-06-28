@@ -1,5 +1,6 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { PaginationProps } from '@awsui/components-react/pagination';
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { PaginationProps } from '@awsui/components-react/pagination';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { usePagination } from '..';
 
@@ -24,14 +25,12 @@ describe('usePagination', (): void => {
 
   describe('handleChange', (): void => {
     const TEST_CURRENT_PAGE_INDEX = 2;
-    const TEST_CHANGE_EVENT: NonCancelableCustomEvent<PaginationProps.ChangeDetail> = new CustomEvent(
-      '',
-      {
+    const TEST_CHANGE_EVENT: NonCancelableCustomEvent<PaginationProps.ChangeDetail> =
+      new CustomEvent('', {
         detail: {
           currentPageIndex: TEST_CURRENT_PAGE_INDEX,
         },
-      },
-    );
+      });
 
     it('should set currentPageIndex', (): void => {
       const { result } = renderHook(usePagination, {

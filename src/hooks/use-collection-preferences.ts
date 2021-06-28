@@ -1,28 +1,31 @@
-import { CollectionPreferencesProps } from '@awsui/components-react/collection-preferences';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { CollectionPreferencesProps } from '@awsui/components-react/collection-preferences';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { useCallback, useMemo, useState } from 'react';
+import getDefaultCollectionPreferencesProps from '../utils/get-default-collection-preferences-props';
 
 export interface Props<Custom> {
   defaultCustom?: Custom;
   defaultPageSize?: number;
   defaultVisibleContent?: string[];
   defaultWrapLines?: boolean;
-  onCustomChange?(custom?: Custom): void;
-  onPageSizeChange?(pageSize?: number): void;
-  onVisibleContentChange?(visibleContent?: readonly string[]): void;
-  onWrapLinesChange?(wrapLines?: boolean): void;
+  onCustomChange?: (custom?: Custom) => void;
+  onPageSizeChange?: (pageSize?: number) => void;
+  onVisibleContentChange?: (visibleContent?: readonly string[]) => void;
+  onWrapLinesChange?: (wrapLines?: boolean) => void;
 }
 
 export interface State<Custom> {
   custom?: Custom;
-  handleConfirm: Required<CollectionPreferencesProps>['onConfirm'];
   pageSize?: number;
   preferences: CollectionPreferencesProps.Preferences;
   visibleContent?: readonly string[];
   wrapLines?: boolean;
+  handleConfirm: (
+    event: NonCancelableCustomEvent<
+      CollectionPreferencesProps.Preferences<Custom>
+    >,
+  ) => void;
 }
-
-const DEFAULT_PROPS: Props<unknown> = Object.freeze(Object.create(null));
 
 export default function useCollectionPreferences<Custom>(
   props?: Props<Custom>,
@@ -36,8 +39,9 @@ export default function useCollectionPreferences<Custom>(
     onPageSizeChange,
     onVisibleContentChange,
     onWrapLinesChange,
-  } = props || (DEFAULT_PROPS as Props<Custom>);
+  } = props ?? getDefaultCollectionPreferencesProps<Custom>();
 
+  // States
   const [custom, setCustom] = useState<Custom | undefined>(defaultCustom);
   const [pageSize, setPageSize] = useState<number | undefined>(defaultPageSize);
   const [visibleContent, setVisibleContent] = useState<

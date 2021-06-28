@@ -1,23 +1,27 @@
-import { CheckboxProps } from '@awsui/components-react/checkbox';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { CheckboxProps } from '@awsui/components-react/checkbox';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultChecked: CheckboxProps['checked'];
+  defaultChecked?: boolean;
 }
 
 export interface State {
-  checked: CheckboxProps['checked'];
-  handleChange: Required<CheckboxProps>['onChange'];
-  setChecked: Dispatch<SetStateAction<CheckboxProps['checked']>>;
+  checked: boolean;
+  setChecked: (value: SetStateAction<boolean>) => void;
+  handleChange: (
+    event: NonCancelableCustomEvent<CheckboxProps.ChangeDetail>,
+  ) => void;
 }
 
-export default function useCheckbox(props: Props = Object.create(null)): State {
-  const { defaultChecked } = props;
+const DEFAULT_PROPS: Props = Object.freeze({});
 
-  const [checked, setChecked] = useState<CheckboxProps['checked']>(
-    defaultChecked,
-  );
+export default function useCheckbox(props: Props = DEFAULT_PROPS): State {
+  const { defaultChecked = false } = props;
+
+  // States
+  const [checked, setChecked] = useState<boolean>(defaultChecked);
 
   return {
     checked,

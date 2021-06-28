@@ -1,25 +1,23 @@
-import { CheckboxProps } from '@awsui/components-react/checkbox';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { CheckboxProps } from '@awsui/components-react/checkbox';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useCheckbox } from '..';
 
 const TEST_CHECKED = true;
 
-const TEST_EVENT: NonCancelableCustomEvent<CheckboxProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const TEST_EVENT: NonCancelableCustomEvent<CheckboxProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       checked: TEST_CHECKED,
       indeterminate: false,
     },
-  },
-);
+  });
 
 describe('useCheckbox', (): void => {
   describe('checked', (): void => {
-    it('should default to undefined', (): void => {
+    it('should default to false', (): void => {
       const { result } = renderHook(useCheckbox);
-      expect(result.current.checked).toBeUndefined();
+      expect(result.current.checked).toBe(false);
     });
 
     it('should default to defaultChecked', (): void => {

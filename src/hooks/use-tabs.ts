@@ -1,23 +1,28 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { TabsProps } from '@awsui/components-react/tabs';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { TabsProps } from '@awsui/components-react/tabs';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultActiveTabId: TabsProps['activeTabId'];
+  defaultActiveTabId?: string;
 }
 
 export interface State {
-  activeTabId: TabsProps['activeTabId'];
-  handleChange: Required<TabsProps>['onChange'];
-  setActiveTabId: Dispatch<SetStateAction<TabsProps['activeTabId']>>;
+  activeTabId?: string;
+  setActiveTabId: (value: SetStateAction<string | undefined>) => void;
+  handleChange: (
+    event: NonCancelableCustomEvent<TabsProps.ChangeDetail>,
+  ) => void;
 }
 
-export default function useTabs(props: Props = Object.create(null)): State {
+const DEFAULT_PROPS: Props = Object.freeze({});
+
+export default function useTabs(props: Props = DEFAULT_PROPS): State {
   const { defaultActiveTabId } = props;
 
-  const [activeTabId, setActiveTabId] = useState<TabsProps['activeTabId']>(
-    defaultActiveTabId,
-  );
+  // States
+  const [activeTabId, setActiveTabId] =
+    useState<TabsProps['activeTabId']>(defaultActiveTabId);
 
   return {
     activeTabId,

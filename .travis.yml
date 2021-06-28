@@ -2,21 +2,20 @@ language: node_js
 node_js: 14
 branches:
   only: master
-install:
-- rm -rf ./.yarn/cache/
-- rm -rf ./.yarn/sdks/
-- rm -rf ./.yarn/unplugged/
-- rm -rf ./.yarn/build-state.yml
-- rm -rf ./.yarn/install-state.gz
-- yarn
-script:
-- yarn build
-- yarn test
+cache:
+  npm: false
+  directories:
+    - .yarn/cache
 deploy:
-  api_key:
-    secure: ArxIZHmAfOcbf7aLbdRAPxThCI4Mi6uVDoe7o3n46Sq3doD7BCSqwyhq/9wRBdgMA637A++nx6cIFp9KORE47BUDz676a05eFUwfJEaWJrl+XlgdJs7BMmc33s6AAHyQsd79FHIhrVJbdkD81m720fr4BpKK7tThUteVvfVJgsHuJdiJSpuZ916wCm5wiVYk9BnpvzK8BBvdaeB0PXL4ETly1FBO9r20/5iBNoCSzwLhAWtJu47uQae+04Kwy1igcDHtVkUVxCe14LwhVag1M12YSYhivRGsAyPhZZlfWMjDL85tkNoot+hZAhvqKlooHg3G3BylJCIXkU1VfYoznushyHXyFMVY3eV+Ppf9bADlGq+gpgdXQlo6MZ1+4tXdzfQeses21qxxKbwDCaN8pOMC2sPS2wWnsXYOwfj92ihdrH6ZoxYpRuczCnE8u4ShrILMnoafqU8CaAPO1rlAqtaCwM/vuYLs+s4t3356rXd9cODNmpg6K1iKWbcv4Tfrua5+gNXzOTy72MJxqq7fGd3UZaBZj1t5de2507ET01cACBEW1hpYCTT1seyNC9meE6BhpEDcNMlIjLD/dllvztF/r8FyV/7YLoODCLZtjr9pGSxN3IiX4kzTSZ5cXl20ha6Gy28rjmaCPn4JIr2WR9FPP6ElMyIusHRDmv0hGMQ=
   email: npmjs@charlesstover.com
-  on:
-    branch: master
   provider: npm
   skip_cleanup: true
+  api_key:
+    secure: ArxIZHmAfOcbf7aLbdRAPxThCI4Mi6uVDoe7o3n46Sq3doD7BCSqwyhq/9wRBdgMA637A++nx6cIFp9KORE47BUDz676a05eFUwfJEaWJrl+XlgdJs7BMmc33s6AAHyQsd79FHIhrVJbdkD81m720fr4BpKK7tThUteVvfVJgsHuJdiJSpuZ916wCm5wiVYk9BnpvzK8BBvdaeB0PXL4ETly1FBO9r20/5iBNoCSzwLhAWtJu47uQae+04Kwy1igcDHtVkUVxCe14LwhVag1M12YSYhivRGsAyPhZZlfWMjDL85tkNoot+hZAhvqKlooHg3G3BylJCIXkU1VfYoznushyHXyFMVY3eV+Ppf9bADlGq+gpgdXQlo6MZ1+4tXdzfQeses21qxxKbwDCaN8pOMC2sPS2wWnsXYOwfj92ihdrH6ZoxYpRuczCnE8u4ShrILMnoafqU8CaAPO1rlAqtaCwM/vuYLs+s4t3356rXd9cODNmpg6K1iKWbcv4Tfrua5+gNXzOTy72MJxqq7fGd3UZaBZj1t5de2507ET01cACBEW1hpYCTT1seyNC9meE6BhpEDcNMlIjLD/dllvztF/r8FyV/7YLoODCLZtjr9pGSxN3IiX4kzTSZ5cXl20ha6Gy28rjmaCPn4JIr2WR9FPP6ElMyIusHRDmv0hGMQ=
+  on:
+    branch: master
+install:
+  - yarn
+script:
+  - yarn build
+  - yarn test

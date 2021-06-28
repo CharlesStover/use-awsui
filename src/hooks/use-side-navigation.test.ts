@@ -1,4 +1,4 @@
-import { SideNavigationProps } from '@awsui/components-react/side-navigation';
+import type { SideNavigationProps } from '@awsui/components-react/side-navigation';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useSideNavigation } from '..';
 
@@ -30,15 +30,13 @@ describe('useSideNavigation', (): void => {
       });
 
       act((): void => {
-        const TEST_FOLLOW_EVENT: CustomEvent<SideNavigationProps.FollowDetail> = new CustomEvent(
-          '',
-          {
+        const TEST_FOLLOW_EVENT: CustomEvent<SideNavigationProps.FollowDetail> =
+          new CustomEvent('', {
             detail: {
               href: TEST_ACTIVE_HREF,
               text: 'test text',
             },
-          },
-        );
+          });
         result.current.handleFollow(TEST_FOLLOW_EVENT);
       });
 

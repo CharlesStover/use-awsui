@@ -1,25 +1,21 @@
-import { ExpandableSectionProps } from '@awsui/components-react/expandable-section';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { ExpandableSectionProps } from '@awsui/components-react/expandable-section';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useExpandableSection } from '..';
 
-const COLLAPSE_EVENT: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const COLLAPSE_EVENT: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       expanded: false,
     },
-  },
-);
+  });
 
-const EXPAND_EVENT: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const EXPAND_EVENT: NonCancelableCustomEvent<ExpandableSectionProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       expanded: true,
     },
-  },
-);
+  });
 
 describe('useExpandableSection', (): void => {
   describe('expanded', (): void => {

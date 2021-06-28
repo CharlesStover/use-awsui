@@ -1,23 +1,27 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { RadioGroupProps } from '@awsui/components-react/radio-group';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { RadioGroupProps } from '@awsui/components-react/radio-group';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultValue: RadioGroupProps['value'];
+  defaultValue?: string | null;
 }
 
 export interface State {
-  handleChange: Required<RadioGroupProps>['onChange'];
-  setValue: Dispatch<SetStateAction<RadioGroupProps['value']>>;
+  setValue: (value: SetStateAction<string | null>) => void;
   value: RadioGroupProps['value'];
+  handleChange: (
+    event: NonCancelableCustomEvent<RadioGroupProps.ChangeDetail>,
+  ) => void;
 }
 
-export default function useRadioGroup(
-  props: Props = Object.create(null),
-): State {
-  const { defaultValue } = props;
+const DEFAULT_PROPS: Props = Object.freeze({});
 
-  const [value, setValue] = useState<RadioGroupProps['value']>(defaultValue);
+export default function useRadioGroup(props: Props = DEFAULT_PROPS): State {
+  const { defaultValue = null } = props;
+
+  // States
+  const [value, setValue] = useState<string | null>(defaultValue);
 
   return {
     setValue,

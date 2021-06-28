@@ -16,9 +16,9 @@
 /.env.development
 /.env.local
 /.pnp.cjs
-/.pnp.js
 /.tsbuildinfo
 /build
-/yarn.lock
+/npm-debug.log
+/yarn-debug.log
 /yarn-error.log
 .DS_Store

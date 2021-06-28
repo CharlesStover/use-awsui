@@ -1,20 +1,26 @@
-import { InputProps } from '@awsui/components-react/input';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import type { InputProps } from '@awsui/components-react/input';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { SetStateAction } from 'react';
+import { useCallback, useState } from 'react';
 
 export interface Props {
-  defaultValue: InputProps['value'];
+  defaultValue?: string;
 }
 
 export interface State {
-  handleChange: Required<InputProps>['onChange'];
-  setValue: Dispatch<SetStateAction<InputProps['value']>>;
+  setValue: (value: SetStateAction<string>) => void;
   value: InputProps['value'];
+  handleChange: (
+    event: NonCancelableCustomEvent<InputProps.ChangeDetail>,
+  ) => void;
 }
 
-export default function useInput(props: Props = Object.create(null)): State {
-  const { defaultValue } = props;
+const DEFAULT_PROPS: Props = Object.freeze({});
 
+export default function useInput(props: Props = DEFAULT_PROPS): State {
+  const { defaultValue = '' } = props;
+
+  // States
   const [value, setValue] = useState<InputProps['value']>(defaultValue);
 
   return {

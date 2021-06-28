@@ -1,25 +1,21 @@
-import { AppLayoutProps } from '@awsui/components-react/app-layout';
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { AppLayoutProps } from '@awsui/components-react/app-layout';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useAppLayout } from '..';
 
-const TEST_CLOSE_EVENT: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const TEST_CLOSE_EVENT: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       open: false,
     },
-  },
-);
+  });
 
-const TEST_OPEN_EVENT: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const TEST_OPEN_EVENT: NonCancelableCustomEvent<AppLayoutProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       open: true,
     },
-  },
-);
+  });
 
 describe('useAppLayout', (): void => {
   describe('handleNavigationChange', (): void => {

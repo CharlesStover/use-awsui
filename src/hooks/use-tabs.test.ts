@@ -1,18 +1,16 @@
-import { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
-import { TabsProps } from '@awsui/components-react/tabs';
+import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { TabsProps } from '@awsui/components-react/tabs';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useTabs } from '..';
 
 const TEST_ACTIVE_TAB_ID = 'test-active-tab-id';
 
-const TEST_EVENT: NonCancelableCustomEvent<TabsProps.ChangeDetail> = new CustomEvent(
-  '',
-  {
+const TEST_EVENT: NonCancelableCustomEvent<TabsProps.ChangeDetail> =
+  new CustomEvent('', {
     detail: {
       activeTabId: TEST_ACTIVE_TAB_ID,
     },
-  },
-);
+  });
 
 describe('useTabs', (): void => {
   describe('activeTabId', (): void => {
