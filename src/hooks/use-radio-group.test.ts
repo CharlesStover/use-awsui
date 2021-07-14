@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { NonCancelableCustomEvent } from '@awsui/components-react';
 import type { RadioGroupProps } from '@awsui/components-react/radio-group';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useRadioGroup } from '..';

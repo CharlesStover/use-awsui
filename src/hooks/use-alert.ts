@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { NonCancelableCustomEvent } from '@awsui/components-react';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 

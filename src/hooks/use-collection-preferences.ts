@@ -1,5 +1,5 @@
+import type { NonCancelableCustomEvent } from '@awsui/components-react';
 import type { CollectionPreferencesProps } from '@awsui/components-react/collection-preferences';
-import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import { useCallback, useMemo, useState } from 'react';
 import getDefaultCollectionPreferencesProps from '../utils/get-default-collection-preferences-props';
 

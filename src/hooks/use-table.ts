@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { NonCancelableCustomEvent } from '@awsui/components-react';
 import type { TableProps } from '@awsui/components-react/table';
 import { useCallback, useState } from 'react';
 import getDefaultTableProps from '../utils/get-default-table-props';
@@ -8,7 +8,7 @@ export interface Props<Item> {
   defaultSelectedItems?: Item[];
   defaultSortingColumn?: TableProps.SortingColumn<Item>;
   defaultSortingDescending?: boolean;
-  onSelectionChange?: (selectedItems: Readonly<Item[]>) => void;
+  onSelectionChange?: (selectedItems: readonly Item[]) => void;
   onSortingChange?: (state: TableProps.SortingState<Item>) => void;
 }
 

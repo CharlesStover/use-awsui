@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { NonCancelableCustomEvent } from '@awsui/components-react';
 import type { TextFilterProps } from '@awsui/components-react/text-filter';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useTextFilter } from '..';

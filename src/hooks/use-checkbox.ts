@@ -1,5 +1,5 @@
+import type { NonCancelableCustomEvent } from '@awsui/components-react';
 import type { CheckboxProps } from '@awsui/components-react/checkbox';
-import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
 import type { SetStateAction } from 'react';
 import { useCallback, useState } from 'react';
 

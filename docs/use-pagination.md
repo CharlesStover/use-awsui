@@ -58,7 +58,7 @@ Type: `NonCancelableEventHandler<PaginationProps.ChangeDetail>`
 
 ### `paginate`
 
-Type: `(items: Item[]) => Item[]`
+Type: `(items: readonly Item[]) => readonly Item[]`
 
 `paginate` is a utility function that, when given an array of items, paginates
 them based on the current pagination state.
@@ -112,15 +112,11 @@ import { usePagination } from 'use-awsui';
 const ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 function MyTable() {
-  const {
-    currentPageIndex,
-    handleChange,
-    pagesCount,
-    paginate,
-  } = usePagination({
-    itemsCount: ITEMS.length,
-    pageSize: 4,
-  });
+  const { currentPageIndex, handleChange, pagesCount, paginate } =
+    usePagination({
+      itemsCount: ITEMS.length,
+      pageSize: 4,
+    });
 
   const items = paginate(ITEMS);
 

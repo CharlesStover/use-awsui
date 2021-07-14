@@ -40,7 +40,7 @@ The default value of `Table`'s `sortingDescending` prop
 
 ### `onSelectionChange`
 
-Type: `(selectedItems?: Item[]) => void`
+Type: `(selectedItems?: readonly Item[]) => void`
 
 `onSelectionChange` is an event listener that fires whenever the customer
 selects items in the table. It is passed an array of all selected items.

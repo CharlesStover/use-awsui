@@ -1,4 +1,4 @@
-import type { NonCancelableCustomEvent } from '@awsui/components-react/internal/events';
+import type { NonCancelableCustomEvent } from '@awsui/components-react';
 import type { ToggleProps } from '@awsui/components-react/toggle';
 import { useCallback, useState } from 'react';
 
